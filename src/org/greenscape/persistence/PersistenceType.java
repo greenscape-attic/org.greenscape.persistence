@@ -4,7 +4,7 @@
 package org.greenscape.persistence;
 
 /**
- * @author BANSS
+ * @author Sheikh Sajid
  * 
  */
 public enum PersistenceType {

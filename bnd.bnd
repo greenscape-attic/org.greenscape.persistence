@@ -1,6 +1,4 @@
-Service-Component: org.greenscape.persistence.tracker.PersistenceServiceListener;\
-		org.greenscape.persistence.PersistenceService=org.greenscape.persistence.PersistenceService+;\
-		immediate:=true
-Export-Package: org.greenscape.persistence,\
-	org.greenscape.persistence.tracker
-Bundle-Version: 0.0.1
+Export-Package: org.greenscape.persistence
+Bundle-Version: 0.1.0
+-dsannotations: *
+-buildpath: jackson-core-asl

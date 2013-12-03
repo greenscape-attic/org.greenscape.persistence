@@ -4,14 +4,12 @@
 package org.greenscape.persistence;
 
 /**
- * @author BANSS
+ * @author Sheikh Sajid
  * 
  */
 public interface PersistenceProvider {
 
 	public String getName();
-
-	// public Version getVersion();
 
 	public PersistenceType getType();
 }
