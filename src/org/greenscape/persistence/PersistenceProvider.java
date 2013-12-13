@@ -9,7 +9,7 @@ package org.greenscape.persistence;
  */
 public interface PersistenceProvider {
 
-	public String getName();
+	String getName();
 
-	public PersistenceType getType();
+	PersistenceType getType();
 }

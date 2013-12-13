@@ -6,5 +6,5 @@
 *.ear
 
 # Directories #
-generated
-bin
+/generated
+/bin

@@ -10,11 +10,11 @@ import java.util.Date;
  * 
  */
 public interface AuditedModel {
-	public Date getCreateDate();
+	Date getCreateDate();
 
-	public Date getModifiedDate();
+	Date getModifiedDate();
 
-	public void setCreateDate(Date date);
+	void setCreateDate(Date date);
 
-	public void setModifiedDate(Date date);
+	void setModifiedDate(Date date);
 }

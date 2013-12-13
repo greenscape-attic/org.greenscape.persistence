@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 
  */
 public interface PersistedModel extends DocumentModel, AuditedModel, Serializable {
-	public static final String CREATE_DATE = "createDate";
-	public static final String MODIFIED_DATE = "modifiedDate";
+	String CREATE_DATE = "createDate";
+	String MODIFIED_DATE = "modifiedDate";
 
 }

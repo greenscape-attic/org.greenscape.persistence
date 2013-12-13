@@ -8,5 +8,5 @@ package org.greenscape.persistence;
  * 
  */
 public enum PersistenceType {
-	DOCUMENT, GRAPH, OBJECT, RELATIONAL
+	DOCUMENT, GRAPH, KEY_VALUE, OBJECT, RELATIONAL
 }
