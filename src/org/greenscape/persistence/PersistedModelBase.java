@@ -12,21 +12,21 @@ public class PersistedModelBase extends DocumentModelBase implements PersistedMo
 
 	@Override
 	public Date getCreateDate() {
-		return (Date) fields.get(CREATE_DATE);
+		return (Date) getProperty(CREATE_DATE);
 	}
 
 	@Override
 	public Date getModifiedDate() {
-		return (Date) fields.get(MODIFIED_DATE);
+		return (Date) getProperty(MODIFIED_DATE);
 	}
 
 	@Override
 	public void setCreateDate(Date date) {
-		fields.put(CREATE_DATE, date);
+		setProperty(CREATE_DATE, date);
 	}
 
 	@Override
 	public void setModifiedDate(Date date) {
-		fields.put(MODIFIED_DATE, date);
+		setProperty(MODIFIED_DATE, date);
 	}
 }

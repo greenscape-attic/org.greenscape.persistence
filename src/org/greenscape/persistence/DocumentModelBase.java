@@ -2,6 +2,7 @@ package org.greenscape.persistence;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,21 +15,20 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 public class DocumentModelBase implements DocumentModel {
 
-	protected Map<String, Object> fields;
+	private final Map<String, Object> fields;
 
 	public DocumentModelBase() {
 		fields = new HashMap<>();
 	}
 
-	@JsonIgnore
 	@Override
-	public Object getId() {
-		return fields.get(ID);
+	public String getModelId() {
+		return (String) fields.get(MODEL_ID);
 	}
 
 	@Override
-	public DocumentModel setId(Object id) {
-		fields.put(ID, id);
+	public DocumentModel setModelId(String modelId) {
+		fields.put(MODEL_ID, modelId);
 		return this;
 	}
 
@@ -57,7 +57,7 @@ public class DocumentModelBase implements DocumentModel {
 	@JsonIgnore
 	@Override
 	public Set<String> getPropertyNames() {
-		return fields.keySet();
+		return new HashSet<>(fields.keySet());
 	}
 
 	@JsonIgnore

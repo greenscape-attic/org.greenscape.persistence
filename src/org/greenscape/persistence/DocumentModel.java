@@ -13,23 +13,23 @@ public interface DocumentModel {
 	/**
 	 * Name of the identifier property
 	 */
-	String ID = "id";
+	String MODEL_ID = "modelId";
 
 	/**
-	 * Gets the ID of the model row
+	 * Gets the UUID of the model
 	 * 
-	 * @return the ID of the model row
+	 * @return the UUID value
 	 */
-	Object getId();
+	String getModelId();
 
 	/**
-	 * Sets the row ID of the model
+	 * Sets the UUID of the model
 	 * 
 	 * @param id
-	 *            the ID to set
+	 *            the UUID to set
 	 * @return the model for fluent interface
 	 */
-	DocumentModel setId(Object id);
+	DocumentModel setModelId(String id);
 
 	/**
 	 * Gets the value of the property given by name
