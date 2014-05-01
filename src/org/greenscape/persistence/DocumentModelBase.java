@@ -15,11 +15,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 public class DocumentModelBase implements DocumentModel {
 
-	private final Map<String, Object> fields;
-
-	public DocumentModelBase() {
-		fields = new HashMap<>();
-	}
+	private final Map<String, Object> fields = new HashMap<>();
 
 	@Override
 	public String getModelId() {

@@ -10,6 +10,9 @@ import java.util.Date;
  * 
  */
 public interface AuditedModel {
+	String CREATE_DATE = "createDate";
+	String MODIFIED_DATE = "modifiedDate";
+
 	Date getCreateDate();
 
 	Date getModifiedDate();

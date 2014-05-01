@@ -12,5 +12,4 @@ Test-Cases: org.greenscape.persistence.DocumentModelBaseTest,\
 	org.greenscape.persistence.PersistedModelBaseTest
 Bundle-Version: 0.1.0
 Private-Package: org.greenscape.persistence.impl
-Bundle-Activator: org.greenscape.persistence.impl.Activator
 -dsannotations: *

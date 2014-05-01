@@ -232,6 +232,8 @@ public interface PersistenceService {
 	 */
 	boolean modelExists(String modelName);
 
+	void addModel(String modelName);
+
 	/**
 	 * Return an instance of CriteriaBuilder for the creation of CriteriaQuery
 	 * objects.

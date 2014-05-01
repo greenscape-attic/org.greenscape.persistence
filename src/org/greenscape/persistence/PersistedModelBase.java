@@ -6,8 +6,15 @@ public class PersistedModelBase extends DocumentModelBase implements PersistedMo
 
 	private static final long serialVersionUID = 8837071132135265946L;
 
-	public PersistedModelBase() {
-		super();
+	@Override
+	public String getOrganizationId() {
+		return (String) getProperty(ORGANIZATION_ID);
+	}
+
+	@Override
+	public PersistedModel setOrganizationId(String organizationId) {
+		setProperty(ORGANIZATION_ID, organizationId);
+		return this;
 	}
 
 	@Override
