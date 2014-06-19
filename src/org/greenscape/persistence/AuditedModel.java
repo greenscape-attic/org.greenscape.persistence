@@ -15,9 +15,9 @@ public interface AuditedModel {
 
 	Date getCreateDate();
 
+	AuditedModel setCreateDate(Date date);
+
 	Date getModifiedDate();
 
-	void setCreateDate(Date date);
-
-	void setModifiedDate(Date date);
+	AuditedModel setModifiedDate(Date date);
 }
