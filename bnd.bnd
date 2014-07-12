@@ -10,5 +10,5 @@ Export-Package: org.greenscape.persistence,\
 -sources: false
 Test-Cases: org.greenscape.persistence.DocumentModelBaseTest,\
 	org.greenscape.persistence.PersistedModelBaseTest
-Bundle-Version: 0.1.0
+Bundle-Version: 0.3.0
 -dsannotations: *
