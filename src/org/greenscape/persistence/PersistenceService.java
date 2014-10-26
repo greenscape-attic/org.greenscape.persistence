@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.Query;
-
 import org.greenscape.persistence.criteria.CriteriaBuilder;
 import org.greenscape.persistence.criteria.CriteriaDelete;
 import org.greenscape.persistence.criteria.CriteriaQuery;
@@ -13,26 +11,36 @@ import org.greenscape.persistence.criteria.CriteriaUpdate;
 
 /**
  * @author Sheikh Sajid
- * 
+ *
  */
 public interface PersistenceService {
 	/**
 	 * Get the provider for this implementation
-	 * 
+	 *
 	 * @return the provider of this persistence implementation
 	 */
 	PersistenceProvider getProvider();
 
 	/**
 	 * Get the type of persistence store
-	 * 
+	 *
 	 * @return the type of persistence
 	 */
 	PersistenceType getType();
 
 	/**
 	 * Saves the object by creating a new record.
-	 * 
+	 *
+	 * @param modelName
+	 *            the model name
+	 * @param object
+	 *            the object to be inserted
+	 */
+	<T> void save(String modelName, T object);
+
+	/**
+	 * Saves the object by creating a new record.
+	 *
 	 * @param object
 	 *            the object to be inserted
 	 */
@@ -40,7 +48,17 @@ public interface PersistenceService {
 
 	/**
 	 * Saves the object by updating existing record.
-	 * 
+	 *
+	 * @param modelName
+	 *            the model name
+	 * @param object
+	 *            the object to be updated
+	 */
+	<T> void update(String modelName, T object);
+
+	/**
+	 * Saves the object by updating existing record.
+	 *
 	 * @param object
 	 *            the object to be updated
 	 */
@@ -48,7 +66,7 @@ public interface PersistenceService {
 
 	/**
 	 * Saves the object creating a new record or updating existing one.
-	 * 
+	 *
 	 * @param object
 	 *            the object to be inserted or updated
 	 */
@@ -56,7 +74,7 @@ public interface PersistenceService {
 
 	/**
 	 * Persists the collection of objects.
-	 * 
+	 *
 	 * @param objects
 	 *            the collection of objects to be persisted
 	 */
@@ -64,7 +82,7 @@ public interface PersistenceService {
 
 	/**
 	 * Persists the array of objects.
-	 * 
+	 *
 	 * @param objects
 	 *            the array of objects to be persisted
 	 */
@@ -72,7 +90,7 @@ public interface PersistenceService {
 
 	/**
 	 * Removes the object from the database
-	 * 
+	 *
 	 * @param object
 	 *            the object to be removed
 	 */
@@ -80,7 +98,7 @@ public interface PersistenceService {
 
 	/**
 	 * Removes the collection of objects from the database
-	 * 
+	 *
 	 * @param objects
 	 *            the collection of objects to be removed
 	 */
@@ -88,7 +106,7 @@ public interface PersistenceService {
 
 	/**
 	 * Removes the array of objects from the database
-	 * 
+	 *
 	 * @param objects
 	 *            the array of objects to be removed
 	 */
@@ -96,7 +114,7 @@ public interface PersistenceService {
 
 	/**
 	 * Executes a native query
-	 * 
+	 *
 	 * @param query
 	 *            the query to execute
 	 * @return
@@ -105,19 +123,20 @@ public interface PersistenceService {
 
 	/**
 	 * Executes a native query. This is used for returning a single entity type
-	 * 
+	 *
 	 * @param query
 	 *            the sql query
 	 * @return the collection of items
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
+	@Deprecated
 	<T> Collection<T> executeQuery(Class<T> clazz, String query);
 
 	/**
 	 * Executes a native query with named parameters. This is used for returning
 	 * a single entity type
-	 * 
+	 *
 	 * @param query
 	 *            the sql query
 	 * @param params
@@ -132,18 +151,19 @@ public interface PersistenceService {
 	/**
 	 * Executes the given sql query as a native query and returns a maximum of
 	 * <code>maxResult</code> items
-	 * 
+	 *
 	 * @param query
 	 *            the sql query
 	 * @param maxResult
 	 *            the maximum number of items
 	 * @return the collection of items
 	 */
+	@Deprecated
 	<T> Collection<T> executeQuery(Class<T> clazz, String query, int maxResult);
 
 	/**
 	 * Search and return all objects of the given modelName
-	 * 
+	 *
 	 * @param modelName
 	 * @return the found list of objects otherwise empty list
 	 */
@@ -151,15 +171,28 @@ public interface PersistenceService {
 
 	/**
 	 * Search and return all objects of the given class
-	 * 
+	 *
 	 * @param clazz
 	 * @return the found list of objects otherwise empty list
 	 */
+	@Deprecated
 	<T extends DocumentModel> List<T> find(Class<T> clazz);
 
 	/**
 	 * Search for the object by its unique identifier
-	 * 
+	 *
+	 * @param modelName
+	 * @param id
+	 *            the unique identifier of the object
+	 * @return the found object otherwise null
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 */
+	<T> T findById(String modelName, String modelId);
+
+	/**
+	 * Search for the object by its unique identifier
+	 *
 	 * @param clazz
 	 * @param id
 	 *            the unique identifier of the object
@@ -167,11 +200,26 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
+	@Deprecated
 	<T> T findById(Class<T> clazz, String modelId);
 
 	/**
 	 * Search for the object by its property and value
-	 * 
+	 *
+	 * @param modelName
+	 * @param propertyName
+	 *            the property on which to search
+	 * @param value
+	 *            the value of the property
+	 * @return the found list of objects otherwise null
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 */
+	<T> List<T> findByProperty(String modelName, String propertyName, Object value);
+
+	/**
+	 * Search for the object by its property and value
+	 *
 	 * @param clazz
 	 * @param propertyName
 	 *            the property on which to search
@@ -181,11 +229,26 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
+	@Deprecated
 	<T> List<T> findByProperty(Class<T> clazz, String propertyName, Object value);
 
 	/**
 	 * Search for the object by one or more property and value
-	 * 
+	 *
+	 * @param modelName
+	 * @param properties
+	 *            the properties to search on, provided as a key-value pair
+	 * @param value
+	 *            the value of the property
+	 * @return the found list of objects otherwise null
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 */
+	<T extends DocumentModel> List<T> findByProperties(String modelName, Map<String, Object> properties);
+
+	/**
+	 * Search for the object by one or more property and value
+	 *
 	 * @param clazz
 	 * @param properties
 	 *            the properties to search on, provided as a key-value pair
@@ -195,29 +258,50 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
+	@Deprecated
 	<T> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties);
 
 	/**
+	 * Deletes all the records of the model from database
+	 *
+	 * @param modelName
+	 *            the model to delete
+	 */
+	<T extends DocumentModel> void delete(String modelName);
+
+	/**
 	 * Deletes all the records of the class type from database
-	 * 
+	 *
 	 * @param clazz
 	 *            the class type collection to delete
 	 */
+	@Deprecated
 	<T extends DocumentModel> void delete(Class<T> clazz);
 
 	/**
+	 * Deletes the record of the model and having the modelId
+	 *
+	 * @param modelName
+	 *            the model name
+	 * @param modelId
+	 *            the record modelId to delete
+	 */
+	<T extends DocumentModel> void delete(String modelName, String modelId);
+
+	/**
 	 * Deletes the record of the class type and having the modelId
-	 * 
+	 *
 	 * @param clazz
 	 *            the class type collection to delete
 	 * @param modelId
 	 *            the record modelId to delete
 	 */
+	@Deprecated
 	<T extends DocumentModel> void delete(Class<T> clazz, String modelId);
 
 	/**
 	 * Deletes the given object from database
-	 * 
+	 *
 	 * @param documentModel
 	 *            the object to delete
 	 */
@@ -225,7 +309,7 @@ public interface PersistenceService {
 
 	/**
 	 * Check whether the model exists in database
-	 * 
+	 *
 	 * @param modelName
 	 *            the name of the model to check
 	 * @return true if the model is already saved in database else falls
@@ -237,7 +321,7 @@ public interface PersistenceService {
 	/**
 	 * Return an instance of CriteriaBuilder for the creation of CriteriaQuery
 	 * objects.
-	 * 
+	 *
 	 * @return CriteriaBuilder instance
 	 */
 	CriteriaBuilder getCriteriaBuilder();
@@ -245,7 +329,7 @@ public interface PersistenceService {
 	/**
 	 * Create an instance of <code>TypedQuery</code> for executing a criteria
 	 * query.
-	 * 
+	 *
 	 * @param criteriaQuery
 	 *            a criteria query object
 	 * @return the new query instance
@@ -257,7 +341,7 @@ public interface PersistenceService {
 
 	/**
 	 * Create an instance of Query for executing a criteria update query.
-	 * 
+	 *
 	 * @param updateQuery
 	 *            a criteria update query object
 	 * @return the new query instance
@@ -268,7 +352,7 @@ public interface PersistenceService {
 
 	/**
 	 * Create an instance of Query for executing a criteria delete query.
-	 * 
+	 *
 	 * @param deleteQuery
 	 *            a criteria delete query object
 	 * @return the new query instance

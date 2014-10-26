@@ -6,12 +6,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 /**
- * 
+ *
  * @author Sheikh Sajid
- * 
+ *
  */
 public class DocumentModelBase implements DocumentModel {
 
@@ -33,13 +31,18 @@ public class DocumentModelBase implements DocumentModel {
 		return fields.get(name);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getProperty(Class<T> clazz, String name) {
+		return (T) fields.get(name);
+	}
+
 	@Override
 	public DocumentModel setProperty(String name, Object value) {
 		fields.put(name, value);
 		return this;
 	}
 
-	@JsonIgnore
 	@Override
 	public int getPropertySize() {
 		return fields.size();
@@ -50,13 +53,11 @@ public class DocumentModelBase implements DocumentModel {
 		return fields;
 	}
 
-	@JsonIgnore
 	@Override
 	public Set<String> getPropertyNames() {
 		return new HashSet<>(fields.keySet());
 	}
 
-	@JsonIgnore
 	@Override
 	public Collection<Object> getPropertyValues() {
 		return fields.values();

@@ -2,8 +2,6 @@ package org.greenscape.persistence;
 
 import java.util.Date;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 public class PersistedModelBase extends DocumentModelBase implements PersistedModel {
 
 	private static final long serialVersionUID = 8837071132135265946L;
@@ -19,19 +17,17 @@ public class PersistedModelBase extends DocumentModelBase implements PersistedMo
 		return this;
 	}
 
-	@JsonIgnore
 	@Override
-	public Date getCreateDate() {
-		return (Date) getProperty(CREATE_DATE);
+	public Date getCreatedDate() {
+		return (Date) getProperty(CREATED_DATE);
 	}
 
 	@Override
-	public PersistedModel setCreateDate(Date date) {
-		setProperty(CREATE_DATE, date);
+	public PersistedModel setCreatedDate(Date date) {
+		setProperty(CREATED_DATE, date);
 		return this;
 	}
 
-	@JsonIgnore
 	@Override
 	public Date getModifiedDate() {
 		return (Date) getProperty(MODIFIED_DATE);

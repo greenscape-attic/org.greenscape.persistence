@@ -1,22 +1,26 @@
 /**
- * 
+ *
  */
 package org.greenscape.persistence;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Sheikh Sajid
- * 
+ *
  */
 public interface AuditedModel {
-	String CREATE_DATE = "createDate";
+	String CREATED_DATE = "createdDate";
 	String MODIFIED_DATE = "modifiedDate";
 
-	Date getCreateDate();
+	@JsonIgnore
+	Date getCreatedDate();
 
-	AuditedModel setCreateDate(Date date);
+	AuditedModel setCreatedDate(Date date);
 
+	@JsonIgnore
 	Date getModifiedDate();
 
 	AuditedModel setModifiedDate(Date date);

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.greenscape.persistence.annotations;
 
@@ -11,8 +11,9 @@ import java.lang.annotation.Target;
 
 /**
  * @author Sheikh Sajid
- * 
+ *
  */
+@Deprecated
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

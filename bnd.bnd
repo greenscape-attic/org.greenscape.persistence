@@ -2,11 +2,12 @@ Export-Package: org.greenscape.persistence,\
 	org.greenscape.persistence.annotations,\
 	org.greenscape.persistence.metamodel,\
 	org.greenscape.persistence.criteria
--buildpath: jackson-core-asl,\
+-buildpath:  \
 	junit.osgi,\
 	org.eclipse.osgi.services,\
 	osgi.cmpn;version=4.3,\
-	osgi.core;version=4.3
+	osgi.core;version=4.3,\
+	com.fasterxml.jackson.core.jackson-annotations
 -sources: false
 Test-Cases: org.greenscape.persistence.DocumentModelBaseTest,\
 	org.greenscape.persistence.PersistedModelBaseTest
