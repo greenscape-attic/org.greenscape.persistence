@@ -15,9 +15,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public interface DocumentModel {
 	/**
+	 * The name of the internal database id
+	 */
+	String ID = "id";
+	/**
 	 * Name of the identifier property
 	 */
 	String MODEL_ID = "modelId";
+
+	/**
+	 * Get the internal id defined by the database, if available, otherwise
+	 * returns the modelId. Some database like OrientDB and MongoDB provides its
+	 * own id for every document instance
+	 *
+	 * @return the internal id or the modelId
+	 */
+	Object getId();
+
+	/**
+	 * Sets the internal id provided by the database or the modelId
+	 *
+	 * @param id
+	 *            the internal database id
+	 * @return this model instance
+	 */
+	DocumentModel setId(Object id);
 
 	/**
 	 * Gets the UUID of the model
@@ -29,11 +51,11 @@ public interface DocumentModel {
 	/**
 	 * Sets the UUID of the model
 	 *
-	 * @param id
+	 * @param modelId
 	 *            the UUID to set
-	 * @return the model for fluent interface
+	 * @return this model instance
 	 */
-	DocumentModel setModelId(String id);
+	DocumentModel setModelId(String modelId);
 
 	/**
 	 * Gets the value of the property given by name

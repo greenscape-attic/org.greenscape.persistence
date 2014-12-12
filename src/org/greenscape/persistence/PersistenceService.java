@@ -179,7 +179,11 @@ public interface PersistenceService {
 	<T extends DocumentModel> List<T> find(Class<T> clazz);
 
 	/**
-	 * Search for the object by its unique identifier
+	 * Search for the object by its unique identifier. The id is a database
+	 * specific id and its type is defined by the database. Database that do not
+	 * provide its own id must return the modelId. In that case, both this
+	 * method and <code>findByModelId(String modelName, String modelId)</code>
+	 * are equivalent
 	 *
 	 * @param modelName
 	 * @param id
@@ -188,7 +192,19 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	<T> T findById(String modelName, String modelId);
+	<T> T find(String modelName, Object id);
+
+	/**
+	 * Search for the object by its unique model identifier
+	 *
+	 * @param modelName
+	 * @param modelId
+	 *            the unique identifier of the object
+	 * @return the found object otherwise null
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 */
+	<T> T findByModelId(String modelName, String modelId);
 
 	/**
 	 * Search for the object by its unique identifier

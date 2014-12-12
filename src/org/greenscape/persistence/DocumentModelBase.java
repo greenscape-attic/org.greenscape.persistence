@@ -16,6 +16,17 @@ public class DocumentModelBase implements DocumentModel {
 	private final Map<String, Object> fields = new HashMap<>();
 
 	@Override
+	public Object getId() {
+		return fields.get(ID);
+	}
+
+	@Override
+	public DocumentModel setId(Object id) {
+		fields.put(ID, id);
+		return this;
+	}
+
+	@Override
 	public String getModelId() {
 		return (String) fields.get(MODEL_ID);
 	}
