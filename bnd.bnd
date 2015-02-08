@@ -5,11 +5,12 @@ Export-Package: org.greenscape.persistence,\
 -buildpath:  \
 	junit.osgi,\
 	org.eclipse.osgi.services,\
-	osgi.cmpn;version=4.3,\
-	osgi.core;version=4.3,\
+	osgi.cmpn;version=5.0,\
+	osgi.core;version=5.0,\
 	com.fasterxml.jackson.core.jackson-annotations
--sources: false
 Test-Cases: org.greenscape.persistence.DocumentModelBaseTest,\
 	org.greenscape.persistence.PersistedModelBaseTest
 Bundle-Version: 0.3.0
 -dsannotations: *
+javac.source=1.8
+javac.target=1.8
