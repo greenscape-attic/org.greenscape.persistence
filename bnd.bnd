@@ -8,9 +8,13 @@ Export-Package: org.greenscape.persistence,\
 	osgi.cmpn;version=5.0,\
 	osgi.core;version=5.0,\
 	com.fasterxml.jackson.core.jackson-annotations
-Test-Cases: org.greenscape.persistence.DocumentModelBaseTest,\
-	org.greenscape.persistence.PersistedModelBaseTest
 Bundle-Version: 0.3.0
 -dsannotations: *
 javac.source=1.8
 javac.target=1.8
+-runfw: org.apache.felix.framework;version='[4,5)'
+-runee: JavaSE-1.8
+-runrequires:  \
+	osgi.identity;filter:='(osgi.identity=com.fasterxml.jackson.core.jackson-annotations)'
+-runbundles:  \
+	com.fasterxml.jackson.core.jackson-annotations;version='[2.3.3,2.3.4)'
