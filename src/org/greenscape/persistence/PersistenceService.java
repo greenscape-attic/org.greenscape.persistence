@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.greenscape.core.model.DocumentModel;
 import org.greenscape.persistence.criteria.CriteriaBuilder;
 import org.greenscape.persistence.criteria.CriteriaDelete;
 import org.greenscape.persistence.criteria.CriteriaQuery;
@@ -192,7 +193,7 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	<T> T find(String modelName, Object id);
+	<T extends DocumentModel> T find(String modelName, Object id);
 
 	/**
 	 * Search for the object by its unique model identifier
@@ -204,7 +205,7 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	<T> T findByModelId(String modelName, String modelId);
+	<T extends DocumentModel> T findByModelId(String modelName, String modelId);
 
 	/**
 	 * Search for the object by its unique identifier
@@ -231,7 +232,7 @@ public interface PersistenceService {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	<T> List<T> findByProperty(String modelName, String propertyName, Object value);
+	<T extends DocumentModel> List<T> findByProperty(String modelName, String propertyName, Object value);
 
 	/**
 	 * Search for the object by its property and value
